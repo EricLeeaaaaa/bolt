@@ -1,7 +1,16 @@
-import { RemixBrowser } from '@remix-run/react';
-import { startTransition } from 'react';
-import { hydrateRoot } from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import Root from './root';
 
-startTransition(() => {
-  hydrateRoot(document.getElementById('root')!, <RemixBrowser />);
-});
+// Import global styles
+import './styles/index.scss';
+
+const container = document.getElementById('root');
+if (!container) throw new Error('Root element not found');
+
+const root = createRoot(container);
+root.render(
+  <StrictMode>
+    <Root />
+  </StrictMode>
+);
